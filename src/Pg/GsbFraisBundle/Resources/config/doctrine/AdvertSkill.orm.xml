@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Pg\GsbFraisBundle\Entity\AdvertSkill" table="advert_skill">
+    <indexes>
+      <index name="IDX_5619F91BD07ECCB6" columns="advert_id"/>
+      <index name="IDX_5619F91B5585C142" columns="skill_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="level" type="string" column="level" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="advert" target-entity="Advert" fetch="LAZY">
+      <join-columns>
+        <join-column name="advert_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="skill" target-entity="Skill" fetch="LAZY">
+      <join-columns>
+        <join-column name="skill_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

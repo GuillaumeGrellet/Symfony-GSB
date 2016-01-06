@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Pg\GsbFraisBundle\Entity\Advert" table="advert">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_54F1F40B3DA5256D" columns="image_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="date" type="datetime" column="date" nullable="false"/>
+    <field name="title" type="string" column="title" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="content" type="text" column="content" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="author" type="string" column="author" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="published" type="boolean" column="published" nullable="false"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+    <field name="nbApplications" type="integer" column="nb_applications" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="image" target-entity="Image" fetch="LAZY">
+      <join-columns>
+        <join-column name="image_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="category" target-entity="Category" inversed-by="advert" fetch="LAZY">
+      <join-table name="advert_category">
+        <join-columns>
+          <join-column name="advert_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="category_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>
