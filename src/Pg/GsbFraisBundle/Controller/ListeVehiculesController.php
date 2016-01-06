@@ -115,7 +115,7 @@ class ListeVehiculesController extends Controller
        $marque = $ListeVehiculesVisiteurs['marque'];
        $couleur = $ListeVehiculesVisiteurs['couleur'];*/
 
-
+       $test = $pdo->gettest();
     // On crée un objet Advert
 
     $advert = new Advert();
@@ -177,7 +177,7 @@ class ListeVehiculesController extends Controller
 
 
             return $this->render('PgGsbFraisBundle:ListeVehicules:ListeVehicules.html.twig', array(
-                    'ListeVehiculesVisiteurs'=>$ListeVehiculesVisiteurs, 'form' => $form->createView(),
+                    'ListeVehiculesVisiteurs'=>$ListeVehiculesVisiteurs, 'test' => $test, 'form' => $form->createView(),
                     ));
             
         

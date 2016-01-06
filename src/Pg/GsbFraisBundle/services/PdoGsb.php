@@ -66,23 +66,16 @@ class PdoGsb{
         return $listevehicules;
     }
 
-    public function gettest($serveur,$bdd,$user,$mdp){
-      $conn = new mysqli($serveur,$bdd,$user,$mdp);
+    public function gettest(){
+     
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
-$sql = "INSERT INTO vehicule (immat, marque, modele, couleur)
+$req = "INSERT INTO vehicule (immat, marque, modele, couleur)
 VALUES ('VVV 111 55', 'Doe', 'Test', 'violet')";
+  $sql= PdoGsb::$monPdo->prepare($req);
+$sql->execute();
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
 
-$conn->close();
     }
 
 
